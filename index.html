@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POKI ACCESS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:#050505;
+  font-family:'VT323', monospace;
+  color:#00f7ff;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* CRT effect */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events:none;
+}
+
+.terminal{
+  width:92%;
+  max-width:520px;
+  border:2px solid #00f7ff;
+  padding:25px;
+  box-shadow:0 0 30px #00f7ff55;
+  background:#000;
+}
+
+.header{
+  text-align:center;
+  color:#fff;
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.line{
+  display:flex;
+  align-items:center;
+  margin:15px 0;
+}
+
+.prompt{margin-right:6px}
+
+input{
+  flex:1;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid #00f7ff;
+  color:#fff;
+  font-size:20px;
+  outline:none;
+  font-family:'VT323', monospace;
+}
+
+#submitBtn{
+  margin-top:20px;
+  width:160px;
+  padding:8px;
+  border:1px solid #00f7ff;
+  background:transparent;
+  color:#00f7ff;
+  font-size:20px;
+  cursor:pointer;
+  display:none;
+}
+
+#submitBtn:hover{
+  background:#00f7ff;
+  color:#000;
+}
+
+#thanks{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:48px;
+  color:#fff;
+  display:none;
+}
+
+.error{
+  color:#ff3b3b;
+  font-size:18px;
+  margin-top:8px;
+}
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <div class="header">POKI ACCESS TERMINAL</div>
+
+  <div class="line">
+    <span class="prompt">@username (X):</span>
+    <input type="text" id="user">
+  </div>
+
+  <div class="line">
+    <span class="prompt">Base addy:</span>
+    <input type="text" id="wallet">
+  </div>
+
+  <div class="line">
+    <span class="prompt">Like/RT link*:</span>
+    <input type="text" id="link">
+  </div>
+
+  <div class="line">
+    <span class="prompt">Password:</span>
+    <input type="password" id="pass">
+  </div>
+
+  <div class="error" id="error"></div>
+
+  <button id="submitBtn">SUBMIT</button>
+</div>
+
+<div id="thanks">THANKS POKI</div>
+
+<script>
+const SECRET_PASS = "POKI2026"; // ← غيرها كل مرة
+
+const passInput = document.getElementById("pass");
+const submitBtn = document.getElementById("submitBtn");
+const error = document.getElementById("error");
+
+passInput.addEventListener("input", () => {
+  if(passInput.value === SECRET_PASS){
+    submitBtn.style.display = "block";
+    error.textContent = "";
+  } else {
+    submitBtn.style.display = "none";
+    error.textContent = "Wrong Access Code";
+  }
+});
+
+submitBtn.addEventListener("click", () => {
+  document.querySelector(".terminal").style.display = "none";
+  document.getElementById("thanks").style.display = "flex";
+});
+</script>
+
+</body>
+</html>
